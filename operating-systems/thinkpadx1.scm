@@ -75,7 +75,10 @@
         %base-file-systems))
 
     (users
-      (cons* user:jaden
-             %base-user-accounts))))
+      (cons*
+        (user-account
+          (inherit user:jaden)
+          (supplementary-groups '("wheel")))
+         %base-user-accounts))))
 
 thinkpadx1

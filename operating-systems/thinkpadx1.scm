@@ -66,8 +66,21 @@
             (mount-point "/var/log")
             (type "btrfs")
             (options "subvol=log")
+            (dependencies mapped-devices))
+          (file-system
+            (device "/dev/mapper/cryptroot")
+            (mount-point "/swap")
+            (type "btrfs")
+            (options "subvol=swap")
             (dependencies mapped-devices)))
         %base-file-systems))
+
+    (swap-devices
+      (list
+        (swap-space
+          (target "/swap/swapfile")
+          (dependencies (filter (file-system-mount-point-predicate "/swap")
+                                file-systems)))))
 
     (users
       (cons*

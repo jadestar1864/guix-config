@@ -38,34 +38,35 @@
 
     (file-systems
       (append
-        (list (file-system
-                (device "/dev/mapper/cryptroot")
-                (mount-point "/")
-                (type "btrfs")
-                (options "subvol=rootfs")
-                (dependencies mapped-devices))
-              (file-system
-                (device "/dev/mapper/cryptroot")
-                (mount-point "/home")
-                (type "btrfs")
-                (options "subvol=home")
-                (dependencies mapped-devices))
-              (file-system
-                (device "/dev/mapper/cryptroot")
-                (mount-point "/gnu")
-                (type "btrfs")
-                (options "subvol=gnu")
-                (dependencies mapped-devices))
-              (file-system
-                (device "/dev/mapper/cryptroot")
-                (mount-point "/var/log")
-                (type "btrfs")
-                (options "subvol=log")
-                (dependencies mapped-devices))
-              (file-system
-                (device "/dev/nvme0n1p1")
-                (mount-point "/boot/efi")
-                (type "vfat")))
+        (list
+          (file-system
+            (device "/dev/nvme0n1p1")
+            (mount-point "/boot/efi")
+            (type "vfat"))
+          (file-system
+            (device "/dev/mapper/cryptroot")
+            (mount-point "/")
+            (type "btrfs")
+            (options "subvol=rootfs")
+            (dependencies mapped-devices))
+          (file-system
+            (device "/dev/mapper/cryptroot")
+            (mount-point "/home")
+            (type "btrfs")
+            (options "subvol=home")
+            (dependencies mapped-devices))
+          (file-system
+            (device "/dev/mapper/cryptroot")
+            (mount-point "/gnu")
+            (type "btrfs")
+            (options "subvol=gnu")
+            (dependencies mapped-devices))
+          (file-system
+            (device "/dev/mapper/cryptroot")
+            (mount-point "/var/log")
+            (type "btrfs")
+            (options "subvol=log")
+            (dependencies mapped-devices)))
         %base-file-systems))
 
     (users

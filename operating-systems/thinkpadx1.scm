@@ -52,12 +52,6 @@
                 (dependencies mapped-devices))
               (file-system
                 (device "/dev/mapper/cryptroot")
-                (mount-point "/boot")
-                (type "btrfs")
-                (options "subvol=boot")
-                (dependencies mapped-devices))
-              (file-system
-                (device "/dev/mapper/cryptroot")
                 (mount-point "/gnu")
                 (type "btrfs")
                 (options "subvol=gnu")

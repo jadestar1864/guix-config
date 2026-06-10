@@ -9,6 +9,9 @@
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system shadow)
 
+  #:use-modules (nongnu packages linux)
+  #:use-modules (nongnu system linux-initrd)
+
   #:use-module (operating-systems base)
   #:use-module ((operating-systems common users)
                 #:prefix user:)
@@ -21,6 +24,10 @@
     (host-name "thinkpadx1")
     (keyboard-layout
       (keyboard-layout "us"))
+
+    (kernel linux)
+    (initrd microcode-initrd)
+    (firmware '(linux-firmware))
 
     (bootloader
       (bootloader-configuration

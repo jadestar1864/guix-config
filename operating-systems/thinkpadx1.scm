@@ -2,6 +2,8 @@
   #:use-module (gnu bootloader)
   #:use-module (gnu bootloader grub)
 
+  #:use-module (gnu services networking)
+
   #:use-module (gnu system)
   #:use-module (gnu system accounts)
   #:use-module (gnu system file-systems)
@@ -100,6 +102,7 @@
      (services
        (cons*
          (services network-manager-service-type)
+         (services wpa-supplicant-service-type)
          (services ntp-service-type)
          %common-base-services))))
 

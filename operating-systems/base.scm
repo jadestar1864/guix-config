@@ -1,5 +1,6 @@
 (define-module (operating-systems base)
   #:use-module (gnu system)
+  #:use-module (gnu services)
   #:use-module (gnu packages package-management)
   #:use-module (guix channels)
 

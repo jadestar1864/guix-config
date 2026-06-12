@@ -13,6 +13,7 @@
   #:use-modules (nongnu system linux-initrd)
 
   #:use-module (operating-systems base)
+  #:use-module (operating-systems common base-services)
   #:use-module ((operating-systems common users)
                 #:prefix user:)
 
@@ -94,6 +95,12 @@
         (user-account
           (inherit user:jaden)
           (supplementary-groups '("wheel")))
-         %base-user-accounts))))
+         %base-user-accounts))
+
+     (services
+       (cons*
+         (services network-manager-service-type)
+         (services ntp-service-type)
+         %common-base-services))))
 
 thinkpadx1

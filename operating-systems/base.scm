@@ -32,4 +32,12 @@
           config => (guix-configuration
                       (inherit config)
                       (channels system-channels)
+                      (substitute-urls
+                        (append
+                          (list "https://substitute.nonguix.org")
+                          %default-substitute-urls))
+                      (authorized-keys
+                        (append
+                          (list (local-file "./nonguix-signing-key.pub"))
+                          %default-authorized-guix-keys))
                       (guix (guix-for-channels system-channels))))))))

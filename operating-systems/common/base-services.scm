@@ -29,7 +29,7 @@
           (channels system-channels)
           (substitute-urls
             (append
-              (list "https://substitute.nonguix.org")
+              (list "https://substitutes.nonguix.org")
               %default-substitute-urls))
           (authorized-keys
             (append

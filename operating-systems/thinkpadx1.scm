@@ -40,7 +40,7 @@
     (mapped-devices
       (list
         (mapped-device
-          (source "/dev/nvme0n1")
+          (source (uuid "c4006768-dd54-4cb2-8ae3-83185acfd261"))
           (target "cryptroot")
           (type luks-device-mapping)
           (arguments '(#:allow-discards? #t)))))

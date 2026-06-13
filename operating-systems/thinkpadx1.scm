@@ -101,9 +101,9 @@
      (services
        (append
          (list
-           (services network-manager-service-type)
-           (services wpa-supplicant-service-type)
-           (services ntp-service-type))
+           (service network-manager-service-type)
+           (service wpa-supplicant-service-type)
+           (service ntp-service-type))
          %common-base-services))))
 
 thinkpadx1

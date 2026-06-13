@@ -2,6 +2,7 @@
   #:use-module (gnu bootloader)
   #:use-module (gnu bootloader grub)
 
+  #:use-module (gnu services)
   #:use-module (gnu services networking)
 
   #:use-module (gnu system)
@@ -14,7 +15,6 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
 
-  #:use-module (operating-systems base)
   #:use-module (operating-systems common base-services)
   #:use-module ((operating-systems common users)
                 #:prefix user:)
@@ -23,7 +23,6 @@
 
 (define thinkpadx1
   (operating-system
-    (inherit base)
     (host-name "thinkpadx1")
     (keyboard-layout
       (keyboard-layout "us"))

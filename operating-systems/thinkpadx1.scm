@@ -100,10 +100,11 @@
          %base-user-accounts))
 
      (services
-       (cons*
-         (services network-manager-service-type)
-         (services wpa-supplicant-service-type)
-         (services ntp-service-type)
+       (append
+         (list
+           (services network-manager-service-type)
+           (services wpa-supplicant-service-type)
+           (services ntp-service-type))
          %common-base-services))))
 
 thinkpadx1

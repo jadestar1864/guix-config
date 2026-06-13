@@ -1,4 +1,4 @@
-(define-module (operating-systems common base-services)
+(define-module (unstd config os)
   #:use-module (gnu)
   #:use-module (gnu packages package-management)
   #:use-module (gnu system)

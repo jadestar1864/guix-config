@@ -15,8 +15,8 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
 
-  #:use-module (operating-systems common base-services)
-  #:use-module ((operating-systems common users)
+  #:use-module (unstd config os)
+  #:use-module ((unstd config users)
                 #:prefix user:)
 
   #:export (thinkpadx1))

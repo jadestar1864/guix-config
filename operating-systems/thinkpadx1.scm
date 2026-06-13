@@ -11,8 +11,8 @@
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system shadow)
 
-  #:use-modules (nongnu packages linux)
-  #:use-modules (nongnu system linux-initrd)
+  #:use-module (nongnu packages linux)
+  #:use-module (nongnu system linux-initrd)
 
   #:use-module (operating-systems base)
   #:use-module (operating-systems common base-services)

@@ -29,7 +29,10 @@
 
     (kernel linux)
     (initrd microcode-initrd)
-    (firmware '(linux-firmware))
+    (firmware
+      (cons*
+        iwlwifi-firmware
+        %base-firmware))
 
     (bootloader
       (bootloader-configuration

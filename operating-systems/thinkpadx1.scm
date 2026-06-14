@@ -1,4 +1,5 @@
 (define-module (operating-systems thinkpadx1)
+  #:use-module (gnu)
   #:use-module (gnu services)
   #:use-module (gnu services networking)
 

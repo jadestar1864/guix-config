@@ -95,6 +95,6 @@
        (append
          (list
            (service network-manager-service-type))
-         (operating-system-services base)))))
+         (operating-system-user-services base)))))
 
 thinkpadx1

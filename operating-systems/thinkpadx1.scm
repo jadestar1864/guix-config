@@ -1,6 +1,8 @@
 (define-module (operating-systems thinkpadx1)
   #:use-module (gnu)
+
   #:use-module (gnu services)
+  #:use-module (gnu services desktop)
   #:use-module (gnu services networking)
 
   #:use-module (gnu system)
@@ -9,6 +11,8 @@
   #:use-module (gnu system keyboard)
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system shadow)
+
+  #:use-module (gnu packages terminals)
 
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
@@ -92,6 +96,12 @@
           (supplementary-groups '("wheel")))
          %base-user-accounts))
 
+     (packages
+       (append
+         (list
+           foot)
+         %base-config-packages))
+
      (services
        (append
          (list
@@ -101,7 +111,8 @@
                         `(("wifi_backend.conf" ,(plain-file "wifi_backend.conf"
                                                             "[device]
 wifi.backend=iwd
-wifi.iwd.autoconnect=false\n")))))))
+wifi.iwd.autoconnect=false\n"))))))
+           (service xfce-desktop-service-type))
          (operating-system-user-services base)))))
 
 thinkpadx1

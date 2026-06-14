@@ -94,7 +94,13 @@
      (services
        (append
          (list
-           (service network-manager-service-type))
+           (service network-manager-service-type
+                    (network-manager-configuration
+                      (extra-configuration-files
+                        `(("wifi_backend.conf" ,(plain-file "wifi_backend.conf"
+                                                            "[device]
+wifi.backend=iwd
+wifi.iwd.autoconnect=false\n")))))))
          (operating-system-user-services base)))))
 
 thinkpadx1

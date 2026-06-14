@@ -105,26 +105,26 @@
 
         #|Guix services|#
         (service guix-service-type
-          (guix-configuration
-            (channels system-channels)
-            (guix (guix-for-channels system-channels))
-            (substitute-urls
-              '("https://cache-us-lax.guix.moe"
-                "https://ci.guix.gnu.org"
-                "https://substitutes.nonguix.org"))
-            (authorized-keys
-              (list
-                substitute-key:guix.pub
-                substitute-key:moe.pub
-                substitute-key:nonguix.pub))
-            (extra-options
-              (list
-                "--gc-keep-derivations=yes"
-                "--gc-keep-outputs=yes"))))
+                 (guix-configuration
+                   (channels system-channels)
+                   (guix (guix-for-channels system-channels))
+                   (substitute-urls
+                     '("https://cache-us-lax.guix.moe"
+                       "https://ci.guix.gnu.org"
+                       "https://substitutes.nonguix.org"))
+                   (authorized-keys
+                     (list
+                       substitute-key:guix.pub
+                       substitute-key:moe.pub
+                       substitute-key:nonguix.pub))
+                   (extra-options
+                     (list
+                       "--gc-keep-derivations=yes"
+                       "--gc-keep-outputs=yes"))))
         (service shared-cache-service-type
-          (shared-cache-configuration
-            (mode 'share)
-            (users (list (user-cache (user "jaden"))))))
+                 (shared-cache-configuration
+                   (mode 'share)
+                   (users (list (user-cache (user "jaden"))))))
 
         #|Device management services|#
         (service udev-service-type)

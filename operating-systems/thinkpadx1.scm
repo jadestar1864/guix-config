@@ -1,7 +1,4 @@
 (define-module (operating-systems thinkpadx1)
-  #:use-module (gnu bootloader)
-  #:use-module (gnu bootloader grub)
-
   #:use-module (gnu services)
   #:use-module (gnu services networking)
 
@@ -15,7 +12,8 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
 
-  #:use-module (unstd config os)
+  #:use-module (operating-systems base)
+
   #:use-module ((unstd config users)
                 #:prefix user:)
 
@@ -23,22 +21,14 @@
 
 (define thinkpadx1
   (operating-system
+    (inherit base)
     (host-name "thinkpadx1")
-    (keyboard-layout
-      (keyboard-layout "us"))
-
     (kernel linux)
     (initrd microcode-initrd)
     (firmware
       (cons*
         iwlwifi-firmware
         %base-firmware))
-
-    (bootloader
-      (bootloader-configuration
-        (bootloader grub-efi-bootloader)
-        (targets '("/boot/efi"))
-        (keyboard-layout keyboard-layout)))
 
     (mapped-devices
       (list
@@ -104,9 +94,7 @@
      (services
        (append
          (list
-           (service network-manager-service-type)
-           (service wpa-supplicant-service-type)
-           (service ntp-service-type))
-         %common-base-services))))
+           (service network-manager-service-type))
+         (operating-system-services base)))))
 
 thinkpadx1

@@ -9,3 +9,5 @@
 (define jaden-home-thinkpadx1
   (home-environment
     (inherit jaden-home-base-desktop)))
+
+jaden-home-thinkpadx1

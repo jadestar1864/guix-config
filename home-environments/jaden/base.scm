@@ -12,8 +12,7 @@
 
   #:use-module (operating-systems base)
 
-  #:export (jaden-home-base
-            jaden-home-base-desktop))
+  #:export (jaden-home-base))
 
 (define jaden-home-base
   (home-environment

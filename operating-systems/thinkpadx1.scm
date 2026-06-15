@@ -12,12 +12,12 @@
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system shadow)
 
-  #:use-module (gnu packages terminals)
-
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
 
   #:use-module (operating-systems base)
+
+  #:use-module (home-environments jaden thinkpadx1)
 
   #:use-module ((unstd config users)
                 #:prefix user:)
@@ -26,8 +26,7 @@
 
 (define thinkpadx1
   (operating-system
-    (inherit base)
-    (host-name "thinkpadx1")
+    (inherit (base "thinkpadx1"))
     (kernel linux)
     (initrd microcode-initrd)
     (firmware
@@ -96,12 +95,6 @@
           (supplementary-groups '("wheel")))
          %base-user-accounts))
 
-     (packages
-       (append
-         (list
-           foot)
-         %base-config-packages))
-
      (services
        (append
          (list
@@ -112,7 +105,9 @@
                                                             "[device]
 wifi.backend=iwd
 wifi.iwd.autoconnect=false\n"))))))
-           (service xfce-desktop-service-type))
+           (simple-service 'guix-home-service-jaden
+                           guix-home-service-type
+                           '("jaden" ,jaden-home-thinkpadx1)))
          (operating-system-user-services base)))))
 
 thinkpadx1

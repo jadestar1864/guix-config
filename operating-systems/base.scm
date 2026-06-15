@@ -28,7 +28,8 @@
                 #:prefix substitute-key:)
 
   #:export (base
-            %base-config-packages))
+            base-config-packages
+            system-channels))
 
 (define system-channels
   (append
@@ -42,7 +43,7 @@
             (openpgp-fingerprint "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5")))))
     %default-channels))
 
-(define %base-config-packages
+(define base-config-packages
   (append
     (map
       specification->package
@@ -50,9 +51,9 @@
         "curl"))
     %base-packages))
 
-(define base
+(define (host-name base)
   (operating-system
-    (host-name "base")
+    (host-name host-name)
     (timezone "America/Chicago")
     (locale "en_US.utf8")
     (keyboard-layout (keyboard-layout "us"))
@@ -65,7 +66,7 @@
         (targets '("/boot/efi"))
         (keyboard-layout keyboard-layout)))
 
-    (packages %base-config-packages)
+    (packages base-config-packages)
 
     (services
       (list

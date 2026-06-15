@@ -17,6 +17,7 @@
   #:use-module (gnu system shadow)
 
   #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages gnome)
   #:use-module (gnu packages wm)
 
   #:use-module (nongnu packages linux)

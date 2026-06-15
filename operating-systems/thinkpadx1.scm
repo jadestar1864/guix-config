@@ -139,7 +139,7 @@ wifi.iwd.autoconnect=false\n"))))))
                             (terminal-vt "1")
                             (terminal-switch #t)
                             (default-session-command
-                              (greetd-tuigreet-session
+                              (greetd-agreety-session
                                 (command
                                   (greetd-user-session
                                     (command (file-append niri "/bin/niri"))

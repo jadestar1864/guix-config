@@ -140,9 +140,9 @@ wifi.iwd.autoconnect=false\n"))))))
                               (greetd-tuigreet-session
                                 (command
                                   (greetd-user-session
-                                    (command
-                                      (file-append niri "/bin/niri")
-                                      (command-args '("--session")))))))))
+                                    (command (file-append niri "/bin/niri"))
+                                    (command-args '("--session"))
+                                    (xdg-session-type "wayland")))))))
                         (map
                           (lambda (x)
                                   (greetd-terminal-configuration

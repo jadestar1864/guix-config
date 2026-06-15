@@ -10,8 +10,6 @@
     ))
 
 (define jaden-home-desktop-packages
-  (append
-    (list
-      dank-material-shell
-      foot)
-    jaden-home-base-packages))
+  (list
+    dank-material-shell
+    foot))

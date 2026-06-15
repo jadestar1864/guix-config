@@ -3,6 +3,7 @@
 
   #:use-module (gnu services)
   #:use-module (gnu services desktop)
+  #:use-module (gnu services guix)
   #:use-module (gnu services networking)
 
   #:use-module (gnu system)

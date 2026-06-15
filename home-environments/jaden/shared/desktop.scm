@@ -22,7 +22,7 @@
       (append
         (list
           #|Desktop services|#
-          (service home-niri-service-type)
+          ;(service home-niri-service-type)
 
           #|Sound services|#
           (service home-pipewire-service-type

@@ -19,6 +19,7 @@
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages wm)
+  #:use-module (gnu packages xorg)
 
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)

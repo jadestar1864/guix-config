@@ -22,6 +22,9 @@
   #:use-module (gnu system)
   #:use-module (gnu system keyboard)
 
+  #:use-module (gnu packages curl)
+  #:use-module (gnu packages version-control)
+
   #:use-module (guix channels)
 
   #:use-module ((unstd config substitute-keys)
@@ -45,10 +48,9 @@
 
 (define base-config-packages
   (append
-    (map
-      specification->package
-      '("git"
-        "curl"))
+    (list
+      git
+      curl)
     %base-packages))
 
 (define (base host-name)

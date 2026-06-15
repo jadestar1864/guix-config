@@ -26,7 +26,7 @@
   #:export (thinkpadx1))
 
 (define thinkpadx1
-  (let (system (base "thinkpadx1"))
+  (let ((system (base "thinkpadx1")))
        (operating-system
          (inherit system)
          (kernel linux)

@@ -25,26 +25,12 @@
   #:use-module (gnu packages curl)
   #:use-module (gnu packages version-control)
 
-  #:use-module (guix channels)
-
+  #:use-module (unstd config channels)
   #:use-module ((unstd config substitute-keys)
                 #:prefix substitute-key:)
 
   #:export (base
-            base-config-packages
-            system-channels))
-
-(define system-channels
-  (append
-    (list
-      (channel
-        (name 'nonguix)
-        (url "https://gitlab.com/nonguix/nonguix")
-        (introduction
-          (make-channel-introduction
-            "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
-            (openpgp-fingerprint "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5")))))
-    %default-channels))
+            base-config-packages))
 
 (define base-config-packages
   (append

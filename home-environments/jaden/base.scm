@@ -10,7 +10,7 @@
 
   #:use-module (home-environments jaden shared packages)
 
-  #:use-module (operating-systems base)
+  #:use-module (unstd config channels)
 
   #:export (jaden-home-base))
 

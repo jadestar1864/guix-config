@@ -51,7 +51,7 @@
         "curl"))
     %base-packages))
 
-(define (host-name base)
+(define (base host-name)
   (operating-system
     (host-name host-name)
     (timezone "America/Chicago")

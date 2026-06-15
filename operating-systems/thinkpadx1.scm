@@ -26,89 +26,90 @@
   #:export (thinkpadx1))
 
 (define thinkpadx1
-  (operating-system
-    (inherit (base "thinkpadx1"))
-    (kernel linux)
-    (initrd microcode-initrd)
-    (firmware
-      (cons*
-        iwlwifi-firmware
-        %base-firmware))
+  (let (system (base "thinkpadx1"))
+       (operating-system
+         (inherit system)
+         (kernel linux)
+         (initrd microcode-initrd)
+         (firmware
+           (cons*
+             iwlwifi-firmware
+             %base-firmware))
 
-    (mapped-devices
-      (list
-        (mapped-device
-          (source (uuid "c4006768-dd54-4cb2-8ae3-83185acfd261"))
-          (target "cryptroot")
-          (type luks-device-mapping)
-          (arguments '(#:allow-discards? #t)))))
+         (mapped-devices
+           (list
+             (mapped-device
+               (source (uuid "c4006768-dd54-4cb2-8ae3-83185acfd261"))
+               (target "cryptroot")
+               (type luks-device-mapping)
+               (arguments '(#:allow-discards? #t)))))
 
-    (file-systems
-      (append
-        (list
-          (file-system
-            (device "/dev/nvme0n1p1")
-            (mount-point "/boot/efi")
-            (type "vfat"))
-          (file-system
-            (device "/dev/mapper/cryptroot")
-            (mount-point "/")
-            (type "btrfs")
-            (options "subvol=rootfs")
-            (dependencies mapped-devices))
-          (file-system
-            (device "/dev/mapper/cryptroot")
-            (mount-point "/home")
-            (type "btrfs")
-            (options "subvol=home")
-            (dependencies mapped-devices))
-          (file-system
-            (device "/dev/mapper/cryptroot")
-            (mount-point "/gnu")
-            (type "btrfs")
-            (options "subvol=gnu")
-            (dependencies mapped-devices))
-          (file-system
-            (device "/dev/mapper/cryptroot")
-            (mount-point "/var/log")
-            (type "btrfs")
-            (options "subvol=log")
-            (dependencies mapped-devices))
-          (file-system
-            (device "/dev/mapper/cryptroot")
-            (mount-point "/swap")
-            (type "btrfs")
-            (options "subvol=swap")
-            (dependencies mapped-devices)))
-        %base-file-systems))
+         (file-systems
+           (append
+             (list
+               (file-system
+                 (device "/dev/nvme0n1p1")
+                 (mount-point "/boot/efi")
+                 (type "vfat"))
+               (file-system
+                 (device "/dev/mapper/cryptroot")
+                 (mount-point "/")
+                 (type "btrfs")
+                 (options "subvol=rootfs")
+                 (dependencies mapped-devices))
+               (file-system
+                 (device "/dev/mapper/cryptroot")
+                 (mount-point "/home")
+                 (type "btrfs")
+                      (options "subvol=home")
+                 (dependencies mapped-devices))
+               (file-system
+                 (device "/dev/mapper/cryptroot")
+                 (mount-point "/gnu")
+                 (type "btrfs")
+                 (options "subvol=gnu")
+                 (dependencies mapped-devices))
+               (file-system
+                 (device "/dev/mapper/cryptroot")
+                 (mount-point "/var/log")
+                 (type "btrfs")
+                 (options "subvol=log")
+                 (dependencies mapped-devices))
+               (file-system
+                 (device "/dev/mapper/cryptroot")
+                 (mount-point "/swap")
+                 (type "btrfs")
+                 (options "subvol=swap")
+                 (dependencies mapped-devices)))
+             %base-file-systems))
 
-    (swap-devices
-      (list
-        (swap-space
-          (target "/swap/swapfile")
-          (dependencies (filter (file-system-mount-point-predicate "/swap")
-                                file-systems)))))
+         (swap-devices
+           (list
+             (swap-space
+               (target "/swap/swapfile")
+               (dependencies (filter (file-system-mount-point-predicate "/swap")
+                                     file-systems)))))
 
-    (users
-      (cons*
-        (user-account
-          (inherit user:jaden)
-          (supplementary-groups '("wheel")))
-         %base-user-accounts))
+         (users
+           (cons*
+             (user-account
+               (inherit user:jaden)
+               (supplementary-groups '("wheel")))
+              %base-user-accounts))
 
-     (services
-       (append
-         (list
-           (service network-manager-service-type
-                    (network-manager-configuration
-                      (extra-configuration-files
-                        `(("wifi_backend.conf" ,(plain-file "wifi_backend.conf"
-                                                            "[device]
+          (services
+            (append
+              (list
+                (service network-manager-service-type
+                         (network-manager-configuration
+                           (extra-configuration-files
+                             `(("wifi_backend.conf" ,(plain-file "wifi_backend.conf"
+                                                                 "[device]
 wifi.backend=iwd
 wifi.iwd.autoconnect=false\n"))))))
-           (simple-service 'guix-home-service-jaden
-                           guix-home-service-type
-                           '("jaden" ,jaden-home-thinkpadx1)))
-         (operating-system-user-services base)))))
+                (simple-service 'guix-home-service-jaden
+                                guix-home-service-type
+                                '("jaden" ,jaden-home-thinkpadx1)))
+              (operating-system-user-services system))))))
 
 thinkpadx1

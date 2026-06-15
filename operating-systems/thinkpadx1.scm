@@ -107,7 +107,7 @@
                                                                  "[device]
 wifi.backend=iwd
 wifi.iwd.autoconnect=false\n"))))))
-                (services guix-home-service-type
+                (service guix-home-service-type
                           `(("jaden" ,jaden-home-thinkpadx1))))
               (operating-system-user-services system))))))
 

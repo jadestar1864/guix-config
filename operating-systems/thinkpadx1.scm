@@ -8,6 +8,7 @@
   #:use-module (gnu services desktop)
   #:use-module (gnu services guix)
   #:use-module (gnu services networking)
+  #:use-module (gnu services xorg)
 
   #:use-module (gnu system)
   #:use-module (gnu system accounts)
@@ -125,35 +126,10 @@
 wifi.backend=iwd
 wifi.iwd.autoconnect=false\n"))))))
                 (service guix-home-service-type
-                          `(("jaden" ,jaden-home-thinkpadx1))))
+                          `(("jaden" ,jaden-home-thinkpadx1)))
+                (service gdm-service-type))
               (modify-services
                 (operating-system-user-services system)
-                (greetd-service-type
-                  config => (greetd-configuration
-                    (inherit config)
-                    (greeter-supplementary-groups `("video" "input" "seat"))
-                    (terminals
-                      (append
-                        (list
-                          (greetd-terminal-configuration
-                            (terminal-vt "1")
-                            (terminal-switch #t)
-                            (default-session-command
-                              (greetd-agreety-session
-                                (command
-                                  (greetd-user-session
-                                    (command (file-append niri "/bin/niri"))
-                                    (command-args '("--session"))
-                                    (xdg-session-type "wayland")))))))
-                        (map
-                          (lambda (x)
-                                  (greetd-terminal-configuration
-                                    (terminal-vt (number->string x))
-                                    (default-session-command
-                                      (greetd-agreety-session
-                                        (command
-                                          (greetd-user-session
-                                            (command #~(passwd:shell (getpw)))))))))
-                          (iota 3 2))))))))))))
+                (delete greetd-service-type)))))))
 
 thinkpadx1
